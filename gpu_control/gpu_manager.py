@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 __author__ = "Fishbone"
-__version__ = "0.2.1"
+__version__ = "0.2.3"
 
 __all__ = ["GpuManager"]
 
 from gpu_control.gpu_utils import Linux_Gpu
-# from gpu_control.framework_utils import Keras_Config
 import platform
 
 

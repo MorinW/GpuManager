@@ -2,7 +2,7 @@
 __all__ = ["GpuManager", "__author__", "__version__"]
 
 __author__ = "Fishbone"
-__version__ = "1.1.1"
+__version__ = "1.1.2"
 
 from gpu_control.gpu_utils import Linux_Gpu
 import platform
@@ -14,12 +14,9 @@ class GpuManager(object):
         assert isinstance(visible_gpus, list), "The visible_gpus should be a list"
         self.support_os = ["Linux"]
 
-        os_name = platform.system()
-        if os_name == "Linux":
-            self.os_name = os_name
+        self.os_name = platform.system()
+        if self.os_name == "Linux":
             self.gpu = Linux_Gpu(visible_gpus)
-        else:
-            self.os_name = os_name
 
     def set_best_gpu(self, top_k):
         if self.os_name in self.support_os:

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+__all__ = ["GpuManager", "__author__", "__version__"]
+
 __author__ = "Fishbone"
 __version__ = "1.1.1"
-
-__all__ = ["GpuManager"]
 
 from gpu_control.gpu_utils import Linux_Gpu
 import platform

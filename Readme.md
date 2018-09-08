@@ -12,7 +12,7 @@ python setup.py install
 pip install git+https://github.com/DogfishBone/GpuManager.git
 ```
 
-## How to use it?
+## How to choose gpus?
  - Import the package
  ```python
 from gpu_control.gpu_manager import GpuManager
@@ -25,4 +25,16 @@ my_gpu = GpuManager(visible_gpus)
  ```python
 res = my_gpu.set_best_gpu(top_k)
 ```
-to choose your gpu
+to choose your gpus
+
+## How to set framework?
+For example, with the Keras framework.
+ - Import the package
+ ```python
+from gpu_control.framework_setting import set_keras
+```
+ - Then in your codes, you can write
+ ```python
+set_keras(fraction, is_auto_increase)
+```
+to set the fraction and auto_increase for keras.

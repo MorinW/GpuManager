@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 __author__ = "Fishbone"
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 
 __all__ = ["GpuManager"]
 
@@ -18,10 +18,8 @@ class GpuManager(object):
         if os_name == "Linux":
             self.os_name = os_name
             self.gpu = Linux_Gpu(visible_gpus)
-        elif os_name == "Windows":
-            self.os_name = os_name
         else:
-            raise ValueError("System %s is not adapted!" % os_name)
+            self.os_name = os_name
 
     def set_best_gpu(self, top_k):
         if self.os_name in self.support_os:
@@ -36,9 +34,6 @@ class GpuManager(object):
             self.gpu.set_specified_gpu(gpus)
         else:
             print("All the gpus will be used, because for the system of %s is not supported!" % self.os_name)
-
-    # def set_detail(self, fraction: float=None, is_auto_increase: bool=True):
-    #     self.framework.set_detail(fraction, is_auto_increase)
 
 
 if __name__ == '__main__':

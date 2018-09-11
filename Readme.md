@@ -23,18 +23,18 @@ my_gpu = GpuManager(visible_gpus)
 ```
  - Then run
  ```python
-res = my_gpu.set_best_gpu(top_k)
+res = my_gpu.set_by_memory(top_k)
 ```
 to choose your gpus
 
 ## How to set framework?
-For example, with the Keras framework.
+For example, with a Keras or Tensorflow framework.
  - Import the package
  ```python
-from gpu_control.framework_setting import set_keras
+from gpu_control.framework_setting import set_tensorflow_config
 ```
  - Then in your codes, you can write
  ```python
-set_keras(fraction, is_auto_increase)
+config = set_tensorflow_config(fraction, is_auto_increase)
 ```
-to set the fraction and auto_increase for keras.
+to set the fraction and auto_increase for the framework.

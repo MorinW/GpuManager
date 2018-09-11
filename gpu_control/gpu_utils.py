@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import os
+import abc
 
-class Gpu_Base(object):
+class Gpu_Base(metaclass=abc.ABCMeta):
     def __init__(self, visible_gpu_indexes: list=None):
         self.gpu_num = self.get_gpu_amout()
 
@@ -27,8 +28,8 @@ class Gpu_Base(object):
 
         self.visible_gpu_num = len(self.visible_gpu_indexes)
 
-    def sort_visible_gpus(self):
-        sorted_all_gpus = self.sort_all_gpus()
+    def sort_visible_by_memory(self):
+        sorted_all_gpus = self.sort_all_by_memory()
         sorted_visible_index = []
         for v in sorted_all_gpus:
             if v in self.visible_gpu_indexes:
@@ -36,9 +37,9 @@ class Gpu_Base(object):
         assert len(sorted_visible_index) == self.visible_gpu_num, "Sort Error."
         return sorted_visible_index
 
-    def set_best_gpu(self, top_k):
+    def set_by_memory(self, top_k):
         to_set_indexes = []
-        sorted_visible_gpus = self.sort_visible_gpus()
+        sorted_visible_gpus = self.sort_visible_by_memory()
         assert top_k <= self.visible_gpu_num, "Setted num %d is out of range %d." % (top_k, self.visible_gpu_num)
         for i in range(top_k):
             to_set_indexes.append(sorted_visible_gpus[i])
@@ -48,16 +49,17 @@ class Gpu_Base(object):
     """
         Which needed rewrite are as follows.
     """
+    @abc.abstractmethod
     def get_gpu_amout(self):
-        raise ValueError("This function is needed to rewrite.")
+        pass
 
-    def sort_all_gpus(self):
-        raise ValueError("This function is needed to rewrite.")
+    @abc.abstractmethod
+    def sort_all_by_memory(self):
+        pass
 
+    @abc.abstractmethod
     def set_specified_gpu(self, gpu_indexes: list):
-        raise ValueError("This function is needed to rewrite.")
-
-
+        pass
 
 
 class Linux_Gpu(Gpu_Base):
@@ -69,9 +71,8 @@ class Linux_Gpu(Gpu_Base):
         gpu_num = int(os.popen(CMD_get_gpu_num).read())
         return gpu_num
 
-    def sort_all_gpus(self):
+    def sort_all_by_memory(self):
         CMD1 = 'nvidia-smi| grep MiB | grep -v Default | cut -c 4-8'
-        # CMD2 = 'nvidia-smi -L | wc -l'
         CMD3 = 'nvidia-smi --query-gpu=memory.free --format=csv,noheader,nounits'
 
         # first choose the free gpus

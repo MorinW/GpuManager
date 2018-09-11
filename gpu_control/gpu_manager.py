@@ -2,7 +2,7 @@
 __all__ = ["GpuManager", "__author__", "__version__"]
 
 __author__ = "Fishbone"
-__version__ = "1.2.3"
+__version__ = "1.2.4"
 
 from gpu_control.gpu_utils import Linux_Gpu
 import platform

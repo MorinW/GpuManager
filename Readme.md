@@ -17,7 +17,7 @@ pip install git+https://github.com/DogfishBone/GpuManager.git
  ```python
 from gpu_control.gpu_manager import GpuManager
 ```
- - Create a entry by
+ - Create an entry by
  ```python
 my_gpu = GpuManager(visible_gpus)
 ```

@@ -2,7 +2,7 @@
 __all__ = ["GpuManager", "__author__", "__version__"]
 
 __author__ = "Fishbone"
-__version__ = "1.2.4"
+__version__ = "1.2.5"
 
 from gpu_control.gpu_utils import Linux_Gpu
 import platform
@@ -26,7 +26,7 @@ class GpuManager(object):
             print("All the gpus will be used, because for the system of %s is not supported!" % self.os_name)
         return best_gpus
 
-    def set_set_specified_gpu(self, gpus: list):
+    def set_specified_gpu(self, gpus: list):
         if self.os_name in self.support_os:
             self.gpu.set_specified_gpu(gpus)
         else:

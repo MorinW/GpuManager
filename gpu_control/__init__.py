@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-__all__ = ["gpu_manager", "framework_setting"]
+__all__ = ["GpuManager"]
 
 
-from gpu_control import gpu_manager
-from gpu_control import framework_setting
+from gpu_control.gpu_manager import GpuManager
+# from gpu_control import framework_setting
 
 
 

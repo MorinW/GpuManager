@@ -15,7 +15,7 @@ pip install git+https://github.com/DogfishBone/GpuManager.git
 ## How to choose gpus?
  - Import the package
  ```python
-from gpu_control.gpu_manager import GpuManager
+from gpu_control import GpuManager
 ```
  - Create an entry by
  ```python
